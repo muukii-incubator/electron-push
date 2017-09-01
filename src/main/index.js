@@ -44,6 +44,8 @@ app.on('activate', () => {
   }
 });
 
+console.log('Run!!!');
+
 /**
  * Auto Updater
  *

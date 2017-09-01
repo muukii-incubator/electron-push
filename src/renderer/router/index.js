@@ -5,14 +5,19 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'landing-page',
+    //   component: require('@/components/LandingPage'),
+    // },
     {
-      path: '/',
-      name: 'landing-page',
-      component: require('@/components/LandingPage'),
+      path: '/form',
+      name: 'form',
+      component: require('@/components/Form'),
     },
     {
       path: '*',
-      redirect: '/',
+      redirect: '/form',
     },
   ],
 });
