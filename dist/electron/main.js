@@ -2525,6 +2525,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
 
+
 if (process.env.NODE_ENV !== 'development') {
   global.__static = __webpack_require__(0).join(__dirname, '/static').replace(/\\/g, '\\\\');
 }
@@ -2560,7 +2561,12 @@ __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('activate', function () {
   }
 });
 
-console.log('Run!!!');
+__WEBPACK_IMPORTED_MODULE_0_electron__["ipcMain"].on('asynchronous-message', function (event, arg) {
+  console.log('asynchronous-message arg : ' + arg);
+  event.sender.send('asynchronous-reply', 'asynchronous-message main process.');
+});
+
+console.log(__WEBPACK_IMPORTED_MODULE_0_electron__["ipcMain"]);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "src/main"))
 
 /***/ }),
