@@ -34,8 +34,8 @@
           </span>
         </label>
       </div>
-      <div class="field">
-        <a class="button is-primary">
+      <div class="field" id="send">
+        <a class="button is-primary" @click="sendPushNotification">
           Send
         </a>
       </div>
@@ -44,7 +44,23 @@
 </template>
 
 <script>
+
+import { ipcRenderer } from 'electron'
+// const { ipcRenderer } = require('electron');
+
 export default {
   name: 'form',
+  methods: {
+    sendPushNotification: (event) => {
+      console.log(event);
+      
+      ipcRenderer.on('asynchronous-reply', (response) => {
+        alert(`asynchronousMessage response : ${response}`);
+      });
+      
+      ipcRenderer.send('asynchronous-message', 'asynchronous-message render process.');
+    },
+  },
 };
+
 </script>

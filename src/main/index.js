@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron' // eslint-disable-line
+import { ipcMain } from 'electron' // eslint-disable-line
 
 /**
  * Set `__static` path to static files in production
@@ -44,7 +45,19 @@ app.on('activate', () => {
   }
 });
 
-console.log('Run!!!');
+
+// 非同期でレンダラープロセスからのメッセージを受信し、メッセージを返信する
+ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(`asynchronous-message arg : ${arg}`);
+    event.sender.send('asynchronous-reply', 'asynchronous-message main process.');
+});
+
+
+// console.log('Prepare Push');
+console.log(ipcMain);
+
+// console.log('Run!!!');
+
 
 /**
  * Auto Updater
